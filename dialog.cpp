@@ -73,13 +73,9 @@ void Dialog::createFormGroupBox()
 void Dialog::handleButton()
 {
     QString uri = smallEditor->toPlainText();
-    printf("button pressed %s\n", uri.toStdString().c_str());
 
     nzcp_verification_result verification_result;
-
-    uint8_t *data = (uint8_t *)uri.toStdString().c_str();
-
-    nzcp_error error = nzcp_verify_pass_uri(data, &verification_result, 1);
+    nzcp_error error = nzcp_verify_pass_uri((uint8_t*)uri.toStdString().c_str(), &verification_result, 0);
 
     if (error == NZCP_E_SUCCESS) {
         printf("jti: %s\n", verification_result.jti);
