@@ -37,6 +37,7 @@ void Dialog::createGridGroupBox()
 
     smallEditor = new QTextEdit;
     smallEditor->setAcceptRichText(false);
+    smallEditor->setMinimumSize(QSize(0, 250));
     smallEditor->setPlaceholderText(tr("NZCP:/1/..."));
 
     layout->addWidget(smallEditor);
