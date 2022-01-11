@@ -52,6 +52,7 @@ void Dialog::createFormGroupBox()
     formGroupBox = new QGroupBox(tr("New Zealand COVID Pass Fields"));
     QFormLayout *layout = new QFormLayout;
 
+    layout->addRow(new QLabel(tr("valid:")), new QLineEdit);
     layout->addRow(new QLabel(tr("jti:")), new QLineEdit);
     layout->addRow(new QLabel(tr("iss:")), new QLineEdit);
     layout->addRow(new QLabel(tr("nbf:")), new QLineEdit);
