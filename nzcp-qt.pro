@@ -7,6 +7,6 @@ SOURCES     = dialog.cpp \
 
 # install
 INSTALLS += target
-INCLUDEPATH += nzcp-c-install/usr/local/include
-LIBPATH += nzcp-c-install/usr/local/lib
+INCLUDEPATH += compiled-nzcp-c/usr/local/include
+LIBPATH += compiled-nzcp-c/usr/local/lib
 LIBS += -lnzcp
