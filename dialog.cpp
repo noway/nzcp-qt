@@ -113,8 +113,10 @@ void Dialog::handleButton()
     QString uri = smallEditor->toPlainText();
     std::string std_uri = uri.toStdString();
 
+    int is_example = liveButton->isChecked() ? 0 : 1;
+
     nzcp_verification_result verification_result;
-    nzcp_error error = nzcp_verify_pass_uri((uint8_t*)std_uri.c_str(), &verification_result, 0);
+    nzcp_error error = nzcp_verify_pass_uri((uint8_t*)std_uri.c_str(), &verification_result, is_example);
 
     if (error == NZCP_E_SUCCESS) {
         errorLine->setText(QString::fromStdString(nzcp_error_string(error)));
