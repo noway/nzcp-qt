@@ -54,7 +54,7 @@ void Dialog::createGridGroupBox()
 
 void Dialog::createFormGroupBox()
 {
-    formGroupBox = new QGroupBox(tr("New Zealand COVID Pass Fields"));
+    formGroupBox = new QGroupBox(tr("New Zealand COVID Pass result"));
     QFormLayout *layout = new QFormLayout;
 
     errorLine = new QLineEdit;
