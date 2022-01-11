@@ -1,0 +1,9 @@
+# qmake
+.qmake.stash
+Makefile
+nzcp-qt.app/
+
+# build
+*.o
+moc_dialog.cpp
+moc_predefs.h
