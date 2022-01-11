@@ -39,7 +39,7 @@ void Dialog::createGridGroupBox()
     layout->addWidget(smallEditor);
 
     QHBoxLayout *layout2 = new QHBoxLayout;
-    QPushButton *button = new QPushButton(tr("Verify"));
+    button = new QPushButton(tr("Verify"));
     button->setAutoDefault(false);
     button->setFixedWidth(100);
     layout2->addWidget(button);

@@ -31,6 +31,7 @@ private:
     QGroupBox *gridGroupBox;
     QGroupBox *formGroupBox;
     QTextEdit *smallEditor;
+    QPushButton *button;
 
     QMenu *fileMenu;
     QAction *exitAction;
