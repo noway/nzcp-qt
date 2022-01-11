@@ -1,0 +1,7 @@
+#!/bin/bash
+
+curl -Lo nzcp-c.zip https://github.com/noway/nzcp-c/archive/refs/heads/main.zip
+unzip nzcp-c.zip
+cd nzcp-c-main
+make
+DESTDIR=$PWD/../compiled-nzcp-c make install
