@@ -73,9 +73,10 @@ void Dialog::createFormGroupBox()
 void Dialog::handleButton()
 {
     QString uri = smallEditor->toPlainText();
+    std::string std_uri = uri.toStdString();
 
     nzcp_verification_result verification_result;
-    nzcp_error error = nzcp_verify_pass_uri((uint8_t*)uri.toStdString().c_str(), &verification_result, 0);
+    nzcp_error error = nzcp_verify_pass_uri((uint8_t*)std_uri.c_str(), &verification_result, 0);
 
     if (error == NZCP_E_SUCCESS) {
         printf("jti: %s\n", verification_result.jti);
