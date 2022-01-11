@@ -43,6 +43,18 @@ void Dialog::createGridGroupBox()
     layout->addWidget(smallEditor);
 
     QHBoxLayout *layout2 = new QHBoxLayout;
+    QHBoxLayout *layout3 = new QHBoxLayout;
+
+    QRadioButton *radioButton = new QRadioButton(tr("Live"));
+    radioButton->setChecked(true);
+    QRadioButton *radioButton2 = new QRadioButton(tr("Example"));
+
+    layout3->addWidget(radioButton);
+    layout3->addWidget(radioButton2);
+    layout3->setAlignment(Qt::AlignLeft);
+
+
+    layout2->addLayout(layout3);
     button = new QPushButton(tr("Verify"));
     button->setAutoDefault(false);
     button->setFixedWidth(100);
