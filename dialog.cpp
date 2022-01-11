@@ -59,20 +59,28 @@ void Dialog::createFormGroupBox()
 
     errorLine = new QLineEdit;
     errorLine->setReadOnly(true);
+    errorLine->setFixedWidth(350);
     jtiLine = new QLineEdit;
     jtiLine->setReadOnly(true);
+    jtiLine->setFixedWidth(350);
     issLine = new QLineEdit;
     issLine->setReadOnly(true);
+    issLine->setFixedWidth(350);
     nbfLine = new QLineEdit;
     nbfLine->setReadOnly(true);
+    nbfLine->setFixedWidth(350);
     expLine = new QLineEdit;
     expLine->setReadOnly(true);
+    expLine->setFixedWidth(350);
     givenNameLine = new QLineEdit;
     givenNameLine->setReadOnly(true);
+    givenNameLine->setFixedWidth(350);
     familyNameLine = new QLineEdit;
     familyNameLine->setReadOnly(true);
+    familyNameLine->setFixedWidth(350);
     dobLine = new QLineEdit;
     dobLine->setReadOnly(true);
+    dobLine->setFixedWidth(350);
 
     layout->addRow(new QLabel(tr("error:")), errorLine);
     layout->addRow(new QLabel(tr("jti:")), jtiLine);
