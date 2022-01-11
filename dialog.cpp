@@ -57,7 +57,7 @@ void Dialog::createFormGroupBox()
     formGroupBox = new QGroupBox(tr("New Zealand COVID Pass Fields"));
     QFormLayout *layout = new QFormLayout;
 
-    validLine = new QLineEdit;
+    errorLine = new QLineEdit;
     jtiLine = new QLineEdit;
     issLine = new QLineEdit;
     nbfLine = new QLineEdit;
@@ -66,7 +66,7 @@ void Dialog::createFormGroupBox()
     familyNameLine = new QLineEdit;
     dobLine = new QLineEdit;
 
-    layout->addRow(new QLabel(tr("valid:")), validLine);
+    layout->addRow(new QLabel(tr("error:")), errorLine);
     layout->addRow(new QLabel(tr("jti:")), jtiLine);
     layout->addRow(new QLabel(tr("iss:")), issLine);
     layout->addRow(new QLabel(tr("nbf:")), nbfLine);
@@ -88,7 +88,7 @@ void Dialog::handleButton()
     nzcp_error error = nzcp_verify_pass_uri((uint8_t*)std_uri.c_str(), &verification_result, 0);
 
     if (error == NZCP_E_SUCCESS) {
-        validLine->setText(QString::fromStdString("Valid"));
+        errorLine->setText(QString::fromStdString(nzcp_error_string(error)));
         jtiLine->setText(QString::fromStdString(verification_result.jti));
         issLine->setText(QString::fromStdString(verification_result.iss));
         nbfLine->setText(QString::fromStdString(std::to_string(verification_result.nbf)));

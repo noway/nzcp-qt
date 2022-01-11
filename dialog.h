@@ -36,7 +36,7 @@ private:
     QTextEdit *smallEditor;
     QPushButton *button;
 
-    QLineEdit *validLine;
+    QLineEdit *errorLine;
     QLineEdit *jtiLine;
     QLineEdit *issLine;
     QLineEdit *nbfLine;
