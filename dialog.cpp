@@ -1,5 +1,6 @@
 #include <QtWidgets>
 #include "dialog.h"
+#include <nzcp.h>
 
 Dialog::Dialog()
 {
@@ -71,6 +72,28 @@ void Dialog::createFormGroupBox()
 
 void Dialog::handleButton()
 {
-  QString uri = smallEditor->toPlainText();
-  printf("button pressed %s\n", uri.toStdString().c_str());
+    QString uri = smallEditor->toPlainText();
+    printf("button pressed %s\n", uri.toStdString().c_str());
+
+    nzcp_verification_result verification_result;
+
+    uint8_t *data = (uint8_t *)uri.toStdString().c_str();
+
+    nzcp_error error = nzcp_verify_pass_uri(data, &verification_result, 1);
+
+    if (error == NZCP_E_SUCCESS) {
+        printf("jti: %s\n", verification_result.jti);
+        printf("iss: %s\n", verification_result.iss);
+        printf("nbf: %d\n", verification_result.nbf);
+        printf("exp: %d\n", verification_result.exp);
+        printf("given_name: %s\n", verification_result.given_name);
+        printf("family_name: %s\n", verification_result.family_name);
+        printf("dob: %s\n", verification_result.dob);
+    }
+    else {
+        printf("error: %s\n", nzcp_error_string(error));
+    }
+
+    nzcp_free_verification_result(&verification_result);
+
 }
