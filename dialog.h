@@ -13,6 +13,7 @@ class QMenu;
 class QMenuBar;
 class QPushButton;
 class QTextEdit;
+class QRadioButton;
 QT_END_NAMESPACE
 
 class Dialog : public QDialog
@@ -34,6 +35,10 @@ private:
     QGroupBox *gridGroupBox;
     QGroupBox *formGroupBox;
     QTextEdit *smallEditor;
+
+    QRadioButton *liveButton;
+    QRadioButton *exampleButton;
+
     QPushButton *button;
 
     QLineEdit *errorLine;
