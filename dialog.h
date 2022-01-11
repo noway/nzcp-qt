@@ -24,18 +24,13 @@ public:
 
 private:
     void createMenu();
-    void createHorizontalGroupBox();
     void createGridGroupBox();
     void createFormGroupBox();
-
-    enum { NumButtons = 4 };
 
     QMenuBar *menuBar;
     QGroupBox *gridGroupBox;
     QGroupBox *formGroupBox;
     QTextEdit *smallEditor;
-    QPushButton *buttons[NumButtons];
-    QDialogButtonBox *buttonBox;
 
     QMenu *fileMenu;
     QAction *exitAction;
