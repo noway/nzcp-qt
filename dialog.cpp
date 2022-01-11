@@ -7,6 +7,8 @@ Dialog::Dialog()
     createGridGroupBox();
     createFormGroupBox();
 
+    connect(button, &QPushButton::released, this, &Dialog::handleButton);
+
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setMenuBar(menuBar);
     mainLayout->addWidget(gridGroupBox);
@@ -64,4 +66,10 @@ void Dialog::createFormGroupBox()
     layout->addRow(new QLabel(tr("dob:")), new QLineEdit);
 
     formGroupBox->setLayout(layout);
+}
+
+
+void Dialog::handleButton()
+{
+  printf("button pressed\n");
 }
