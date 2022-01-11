@@ -95,14 +95,14 @@ void Dialog::createFormGroupBox()
     dobLine->setReadOnly(true);
     dobLine->setFixedWidth(350);
 
-    layout->addRow(new QLabel(tr("error:")), errorLine);
-    layout->addRow(new QLabel(tr("jti:")), jtiLine);
-    layout->addRow(new QLabel(tr("iss:")), issLine);
-    layout->addRow(new QLabel(tr("nbf:")), nbfLine);
-    layout->addRow(new QLabel(tr("exp:")), expLine);
-    layout->addRow(new QLabel(tr("given_name:")), givenNameLine);
-    layout->addRow(new QLabel(tr("family_name:")), familyNameLine);
-    layout->addRow(new QLabel(tr("dob:")), dobLine);
+    layout->addRow(new QLabel(tr("error")), errorLine);
+    layout->addRow(new QLabel(tr("jti")), jtiLine);
+    layout->addRow(new QLabel(tr("iss")), issLine);
+    layout->addRow(new QLabel(tr("nbf")), nbfLine);
+    layout->addRow(new QLabel(tr("exp")), expLine);
+    layout->addRow(new QLabel(tr("given_name")), givenNameLine);
+    layout->addRow(new QLabel(tr("family_name")), familyNameLine);
+    layout->addRow(new QLabel(tr("dob")), dobLine);
 
     formGroupBox->setLayout(layout);
 }
