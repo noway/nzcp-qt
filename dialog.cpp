@@ -98,7 +98,14 @@ void Dialog::handleButton()
         dobLine->setText(QString::fromStdString(verification_result.dob));
     }
     else {
-        printf("error: %s\n", nzcp_error_string(error));
+        errorLine->setText(QString::fromStdString(nzcp_error_string(error)));
+        jtiLine->setText(QString::fromStdString(""));
+        issLine->setText(QString::fromStdString(""));
+        nbfLine->setText(QString::fromStdString(""));
+        expLine->setText(QString::fromStdString(""));
+        givenNameLine->setText(QString::fromStdString(""));
+        familyNameLine->setText(QString::fromStdString(""));
+        dobLine->setText(QString::fromStdString(""));
     }
 
     nzcp_free_verification_result(&verification_result);
