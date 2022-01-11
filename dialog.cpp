@@ -57,14 +57,23 @@ void Dialog::createFormGroupBox()
     formGroupBox = new QGroupBox(tr("New Zealand COVID Pass Fields"));
     QFormLayout *layout = new QFormLayout;
 
-    layout->addRow(new QLabel(tr("valid:")), new QLineEdit);
-    layout->addRow(new QLabel(tr("jti:")), new QLineEdit);
-    layout->addRow(new QLabel(tr("iss:")), new QLineEdit);
-    layout->addRow(new QLabel(tr("nbf:")), new QLineEdit);
-    layout->addRow(new QLabel(tr("exp:")), new QLineEdit);
-    layout->addRow(new QLabel(tr("given_name:")), new QLineEdit);
-    layout->addRow(new QLabel(tr("family_name:")), new QLineEdit);
-    layout->addRow(new QLabel(tr("dob:")), new QLineEdit);
+    validLine = new QLineEdit;
+    jtiLine = new QLineEdit;
+    issLine = new QLineEdit;
+    nbfLine = new QLineEdit;
+    expLine = new QLineEdit;
+    givenNameLine = new QLineEdit;
+    familyNameLine = new QLineEdit;
+    dobLine = new QLineEdit;
+
+    layout->addRow(new QLabel(tr("valid:")), validLine);
+    layout->addRow(new QLabel(tr("jti:")), jtiLine);
+    layout->addRow(new QLabel(tr("iss:")), issLine);
+    layout->addRow(new QLabel(tr("nbf:")), nbfLine);
+    layout->addRow(new QLabel(tr("exp:")), expLine);
+    layout->addRow(new QLabel(tr("given_name:")), givenNameLine);
+    layout->addRow(new QLabel(tr("family_name:")), familyNameLine);
+    layout->addRow(new QLabel(tr("dob:")), dobLine);
 
     formGroupBox->setLayout(layout);
 }
@@ -79,13 +88,14 @@ void Dialog::handleButton()
     nzcp_error error = nzcp_verify_pass_uri((uint8_t*)std_uri.c_str(), &verification_result, 0);
 
     if (error == NZCP_E_SUCCESS) {
-        printf("jti: %s\n", verification_result.jti);
-        printf("iss: %s\n", verification_result.iss);
-        printf("nbf: %d\n", verification_result.nbf);
-        printf("exp: %d\n", verification_result.exp);
-        printf("given_name: %s\n", verification_result.given_name);
-        printf("family_name: %s\n", verification_result.family_name);
-        printf("dob: %s\n", verification_result.dob);
+        validLine->setText(QString::fromStdString("Valid"));
+        jtiLine->setText(QString::fromStdString(verification_result.jti));
+        issLine->setText(QString::fromStdString(verification_result.iss));
+        nbfLine->setText(QString::fromStdString(std::to_string(verification_result.nbf)));
+        expLine->setText(QString::fromStdString(std::to_string(verification_result.exp)));
+        givenNameLine->setText(QString::fromStdString(verification_result.given_name));
+        familyNameLine->setText(QString::fromStdString(verification_result.family_name));
+        dobLine->setText(QString::fromStdString(verification_result.dob));
     }
     else {
         printf("error: %s\n", nzcp_error_string(error));

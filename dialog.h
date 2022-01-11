@@ -36,6 +36,15 @@ private:
     QTextEdit *smallEditor;
     QPushButton *button;
 
+    QLineEdit *validLine;
+    QLineEdit *jtiLine;
+    QLineEdit *issLine;
+    QLineEdit *nbfLine;
+    QLineEdit *expLine;
+    QLineEdit *givenNameLine;
+    QLineEdit *familyNameLine;
+    QLineEdit *dobLine;
+
     QMenu *fileMenu;
     QAction *exitAction;
 };
