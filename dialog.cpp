@@ -71,5 +71,6 @@ void Dialog::createFormGroupBox()
 
 void Dialog::handleButton()
 {
-  printf("button pressed\n");
+  QString uri = smallEditor->toPlainText();
+  printf("button pressed %s\n", uri.toStdString().c_str());
 }
