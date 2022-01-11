@@ -16,7 +16,7 @@ Dialog::Dialog()
     mainLayout->setMenuBar(menuBar);
     mainLayout->addWidget(gridGroupBox);
     mainLayout->addWidget(formGroupBox);
-    mainLayout->addWidget(buttonBox);
+    // mainLayout->addWidget(buttonBox);
     setLayout(mainLayout);
 
     setWindowTitle(tr("NZCP-Qt"));
@@ -36,13 +36,21 @@ void Dialog::createMenu()
 void Dialog::createGridGroupBox()
 {
     gridGroupBox = new QGroupBox(tr("New Zealand COVID Pass URI"));
-    QGridLayout *layout = new QGridLayout;
+    QVBoxLayout *layout = new QVBoxLayout;
 
     smallEditor = new QTextEdit;
     smallEditor->setAcceptRichText(false);
     smallEditor->setPlaceholderText(tr("NZCP:/1/..."));
 
     layout->addWidget(smallEditor);
+
+    QHBoxLayout *layout2 = new QHBoxLayout;
+    QPushButton *button = new QPushButton(tr("Verify"));
+    button->setAutoDefault(false);
+    button->setFixedWidth(100);
+    layout2->addWidget(button);
+    layout->addLayout(layout2);
+
 
     gridGroupBox->setLayout(layout);
 }
