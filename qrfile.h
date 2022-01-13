@@ -23,6 +23,9 @@ class QRFile : public QWidget
 public:
     explicit QRFile(QWidget *parent = nullptr);
 
+signals:
+    void verifyPassURISignal(std::string);
+
 private:
 
     void fileOpen();

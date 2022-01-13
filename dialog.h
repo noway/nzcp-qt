@@ -24,8 +24,11 @@ class Dialog : public QDialog
 public:
     Dialog();
 
-private slots:
-  void handleButton();
+public slots:
+    void verifyPassURI(std::string uri);
+
+// private slots:
+//   void handleButton();
 
 private:
     void createMenu();

@@ -10,14 +10,17 @@ Dialog::Dialog()
     // createGridGroupBox();
     createFormGroupBox();
 
-    connect(button, &QPushButton::released, this, &Dialog::handleButton);
+    // connect(button, &QPushButton::released, this, &Dialog::handleButton);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setMenuBar(menuBar);
 
     tabWidget = new QTabWidget;
-    tabWidget->addTab(new QRFile(), tr("QR code file"));
+    QRFile *qrFile = new QRFile;
+    tabWidget->addTab(qrFile, tr("QR code file"));
     tabWidget->addTab(new URI(), tr("URI"));
+
+    connect(qrFile , SIGNAL(verifyPassURISignal(std::string)), this, SLOT(verifyPassURI(std::string)));
 
     mainLayout->addWidget(tabWidget);
     mainLayout->addWidget(formGroupBox);
@@ -80,10 +83,10 @@ void Dialog::createFormGroupBox()
 }
 
 
-void Dialog::handleButton()
+void Dialog::verifyPassURI(std::string std_uri)
 {
-    QString uri = smallEditor->toPlainText();
-    std::string std_uri = uri.toStdString();
+    // QString uri = smallEditor->toPlainText();
+    // std::string std_uri = uri.toStdString();
 
     int is_example = liveButton->isChecked() ? 0 : 1;
 
@@ -114,3 +117,7 @@ void Dialog::handleButton()
     nzcp_free_verification_result(&verification_result);
 
 }
+
+// void Dialog::slotFunc(std::string std_uri)) {
+//     printf("slotFunc\n");
+// }

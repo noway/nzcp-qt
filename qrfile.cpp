@@ -254,6 +254,9 @@ int QRFile::load(const QString &filename)
         // do something useful with results
         if (symbol->get_type() == ZBAR_QRCODE) {
             std::string data = symbol->get_data();
+
+            verifyPassURISignal(data);
+
             const char* data_c = data.c_str();
             printf("%s\n", data_c);
         }
