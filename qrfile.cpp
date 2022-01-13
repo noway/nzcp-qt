@@ -30,18 +30,7 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
     layout->addWidget(buttonWidget);
 
     QHBoxLayout *layout2 = new QHBoxLayout;
-    QHBoxLayout *modeLayout = new QHBoxLayout;
 
-    liveButton = new QRadioButton(tr("Live"));
-    liveButton->setChecked(true);
-    exampleButton = new QRadioButton(tr("Example"));
-
-    modeLayout->addWidget(liveButton);
-    modeLayout->addWidget(exampleButton);
-    modeLayout->setAlignment(Qt::AlignLeft);
-
-
-    layout2->addLayout(modeLayout);
     button = new QPushButton(tr("Verify"));
     button->setAutoDefault(false);
     button->setFixedWidth(100);
@@ -73,7 +62,7 @@ void QRFile::fileOpen()
 }
 
 
-int QRFile::load(const QString &filePath, bool isExample)
+int QRFile::load(const QString &filePath)
 {
     if (!QFile::exists(filePath)) {
         return 1;
@@ -109,7 +98,7 @@ int QRFile::load(const QString &filePath, bool isExample)
         if (symbol->get_type() == ZBAR_QRCODE) {
             std::string data = symbol->get_data();
 
-            verifyPassURISignal(data, isExample);
+            verifyPassURISignal(data);
 
             const char* data_c = data.c_str();
             printf("%s\n", data_c);
@@ -123,9 +112,7 @@ int QRFile::load(const QString &filePath, bool isExample)
 
 void QRFile::verify()
 {
-    bool isExample = exampleButton->isChecked() ? 1 : 0;
-
-    if (load(filePath, isExample) == 0) {
+    if (load(filePath) == 0) {
     }
     else {
         QMessageBox::information(this, "Error", tr("Could not open \"%1\"").arg(QDir::toNativeSeparators(filePath)));

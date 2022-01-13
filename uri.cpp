@@ -14,18 +14,7 @@ URI::URI(QWidget *parent) : QWidget(parent)
     layout->addWidget(smallEditor);
 
     QHBoxLayout *layout2 = new QHBoxLayout;
-    QHBoxLayout *modeLayout = new QHBoxLayout;
 
-    liveButton = new QRadioButton(tr("Live"));
-    liveButton->setChecked(true);
-    exampleButton = new QRadioButton(tr("Example"));
-
-    modeLayout->addWidget(liveButton);
-    modeLayout->addWidget(exampleButton);
-    modeLayout->setAlignment(Qt::AlignLeft);
-
-
-    layout2->addLayout(modeLayout);
     button = new QPushButton(tr("Verify"));
     button->setAutoDefault(false);
     button->setFixedWidth(100);
@@ -43,9 +32,8 @@ URI::URI(QWidget *parent) : QWidget(parent)
 
 void URI::verify()
 {
-    bool isExample = exampleButton->isChecked() ? 1 : 0;
     QString uri = smallEditor->toPlainText();
     std::string stdUri = uri.toStdString();
 
-    verifyPassURISignal(stdUri, isExample);
+    verifyPassURISignal(stdUri);
 }

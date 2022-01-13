@@ -25,7 +25,7 @@ public:
     Dialog();
 
 public slots:
-    void verifyPassURI(std::string uri, bool isExample);
+    void verifyPassURI(std::string uri);
 
 private:
     void createMenu();

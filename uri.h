@@ -24,7 +24,7 @@ public:
     explicit URI(QWidget *parent = nullptr);
 
 signals:
-    void verifyPassURISignal(std::string uri, bool isExample);
+    void verifyPassURISignal(std::string uri);
 
 private:
     void verify();

@@ -7,6 +7,7 @@
 Dialog::Dialog()
 {
     createMenu();
+
     createFormGroupBox();
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -18,8 +19,8 @@ Dialog::Dialog()
     tabWidget->addTab(qrFile, tr("QR code file"));
     tabWidget->addTab(uri, tr("URI"));
 
-    connect(qrFile, SIGNAL(verifyPassURISignal(std::string, bool)), this, SLOT(verifyPassURI(std::string, bool)));
-    connect(uri, SIGNAL(verifyPassURISignal(std::string, bool)), this, SLOT(verifyPassURI(std::string, bool)));
+    connect(qrFile, SIGNAL(verifyPassURISignal(std::string)), this, SLOT(verifyPassURI(std::string)));
+    connect(uri, SIGNAL(verifyPassURISignal(std::string)), this, SLOT(verifyPassURI(std::string)));
 
     mainLayout->addWidget(tabWidget);
     mainLayout->addWidget(formGroupBox);
@@ -42,6 +43,21 @@ void Dialog::createMenu()
 void Dialog::createFormGroupBox()
 {
     formGroupBox = new QGroupBox(tr("New Zealand COVID Pass result"));
+
+    QWidget *settingsWidget = new QWidget;
+    QHBoxLayout *modeLayout = new QHBoxLayout;
+
+    liveButton = new QRadioButton(tr("Live"));
+    liveButton->setChecked(true);
+    exampleButton = new QRadioButton(tr("Example"));
+
+    modeLayout->addWidget(liveButton);
+    modeLayout->addWidget(exampleButton);
+    modeLayout->setAlignment(Qt::AlignLeft);
+    settingsWidget->setLayout(modeLayout);
+
+
+    QWidget *formWidget = new QWidget;
     QFormLayout *layout = new QFormLayout;
 
     errorLine = new QLineEdit;
@@ -78,12 +94,18 @@ void Dialog::createFormGroupBox()
     layout->addRow(new QLabel(tr("family_name")), familyNameLine);
     layout->addRow(new QLabel(tr("dob")), dobLine);
 
-    formGroupBox->setLayout(layout);
+    formWidget->setLayout(layout);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addWidget(settingsWidget);
+    mainLayout->addWidget(formWidget);
+    formGroupBox->setLayout(mainLayout);
 }
 
 
-void Dialog::verifyPassURI(std::string std_uri, bool isExample)
+void Dialog::verifyPassURI(std::string std_uri)
 {
+    bool isExample = exampleButton->isChecked() ? 1 : 0;
     int is_example = isExample ? 1 : 0;
 
     nzcp_verification_result verification_result;

@@ -24,12 +24,12 @@ public:
     explicit QRFile(QWidget *parent = nullptr);
 
 signals:
-    void verifyPassURISignal(std::string uri, bool isExample);
+    void verifyPassURISignal(std::string uri);
 
 private:
 
     void fileOpen();
-    int load(const QString &f, bool isExample);
+    int load(const QString &f);
     void verify();
     
     QString filePath;
