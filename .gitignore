@@ -7,9 +7,13 @@ nzcp-qt.app/
 *.o
 moc_dialog.cpp
 moc_predefs.h
+
+# deps
 compiled-nzcp-c
 nzcp-c-main
 nzcp-c.zip
+zbar.zip
+zbar-master
 
 # other
 .vscode
