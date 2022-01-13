@@ -250,11 +250,13 @@ int QRFile::load(const QString &filename)
     int n = scanner.scan(image);
 
     // extract results
-    for (Image::SymbolIterator symbol = image.symbol_begin();
-	 symbol != image.symbol_end(); ++symbol) {
-	// do something useful with results
-	std::cout << "decoded " << symbol->get_type_name() << " symbol \""
-	     << symbol->get_data() << '"' << std::endl;
+    for (Image::SymbolIterator symbol = image.symbol_begin(); symbol != image.symbol_end(); ++symbol) {
+        // do something useful with results
+        if (symbol->get_type() == ZBAR_QRCODE) {
+            std::string data = symbol->get_data();
+            const char* data_c = data.c_str();
+            printf("%s\n", data_c);
+        }
     }
 
     // clean up
