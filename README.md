@@ -1,6 +1,6 @@
 # NZCP-Qt
 
-An implementation of the NZCP Verifier App using Qt.
+An implementation of NZCP Verifier App using Qt.
 
 Uses [NZCP.c](https://github.com/noway/nzcp-c) library.
 
