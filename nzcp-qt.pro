@@ -12,7 +12,7 @@ SOURCES     = dialog.cpp \
 INSTALLS += target
 INCLUDEPATH += compiled-nzcp-c/usr/local/include /opt/homebrew/include 
 LIBPATH += compiled-nzcp-c/usr/local/lib /opt/homebrew/lib
-PKGCONFIG += MagickWand
+PKGCONFIG += Magick++
 
 
 LIBS += -lnzcp -lzbar 
