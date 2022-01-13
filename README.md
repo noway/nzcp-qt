@@ -9,6 +9,8 @@ Uses [NZCP.c](https://github.com/noway/nzcp-c) library.
 
 ## Requirements
 - `qt@6`
+- `zbar`
+- `imagemagick@7`
 
 ## Build
 - `qmake`
