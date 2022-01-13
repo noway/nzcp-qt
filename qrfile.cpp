@@ -6,12 +6,16 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
     gridGroupBox = new QGroupBox(tr("New Zealand COVID Pass URI"));
     QVBoxLayout *layout = new QVBoxLayout;
 
-    smallEditor = new QTextEdit;
-    smallEditor->setAcceptRichText(false);
-    smallEditor->setMinimumSize(QSize(0, 250));
-    smallEditor->setPlaceholderText(tr("NZCP:/1/..."));
+    button = new QPushButton(tr("&Open file"));
 
-    layout->addWidget(smallEditor);
+    connect(button, &QAbstractButton::clicked, this, &QRFile::fileOpen);
+
+    // smallEditor = new QTextEdit;
+    // smallEditor->setAcceptRichText(false);
+    // smallEditor->setMinimumSize(QSize(0, 250));
+    // smallEditor->setPlaceholderText(tr("NZCP:/1/..."));
+
+    layout->addWidget(button);
 
     QHBoxLayout *layout2 = new QHBoxLayout;
     QHBoxLayout *layout3 = new QHBoxLayout;
@@ -37,4 +41,21 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
 
     setLayout(layout);
 
+}
+
+
+
+void QRFile::fileOpen()
+{
+    QFileDialog fileDialog(this, tr("Open File..."));
+    fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+    fileDialog.setFileMode(QFileDialog::ExistingFile);
+    fileDialog.setMimeTypeFilters({"image/gif", "image/jpeg", "image/png"});
+    if (fileDialog.exec() != QDialog::Accepted)
+        return;
+    const QString fn = fileDialog.selectedFiles().constFirst();
+    // if (load(fn))
+    //     statusBar()->showMessage(tr("Opened \"%1\"").arg(QDir::toNativeSeparators(fn)));
+    // else
+    //     statusBar()->showMessage(tr("Could not open \"%1\"").arg(QDir::toNativeSeparators(fn)));
 }

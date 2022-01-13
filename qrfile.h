@@ -24,6 +24,8 @@ public:
     explicit QRFile(QWidget *parent = nullptr);
 
 private:
+
+    void fileOpen();
     QGroupBox *gridGroupBox;
     QTextEdit *smallEditor;
     QRadioButton *liveButton;
