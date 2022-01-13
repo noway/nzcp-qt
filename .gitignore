@@ -5,8 +5,7 @@ nzcp-qt.app/
 
 # build
 *.o
-moc_dialog.cpp
-moc_predefs.h
+moc_*
 
 # deps
 compiled-nzcp-c
