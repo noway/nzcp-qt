@@ -1,7 +1,7 @@
 #include <QtWidgets>
 #include <QStatusBar>
 #include <zbar.h>
-#include <ImageMagick-7/Magick++.h>
+#include <Magick++.h>
 #include <iostream>
 #include "qrfile.h"
 
