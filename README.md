@@ -21,3 +21,6 @@ Uses [NZCP.c](https://github.com/noway/nzcp-c) library.
 
 ## Run
 - `open nzcp-qt.app`
+
+## Roadmap
+- Publish a binary for Mac OS
