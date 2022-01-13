@@ -32,9 +32,8 @@ private:
     int load(const QString &f, bool isExample);
     void verify();
     
-    QString filename;
-
-    QLabel *filelabel;
+    QString filePath;
+    QLabel *fileLabel;
 
     QGroupBox *gridGroupBox;
     QTextEdit *smallEditor;

@@ -14,11 +14,11 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
 
     QPushButton *openFileButton = new QPushButton(tr("Choose file"));
     openFileButton->setFixedWidth(100);
-    filelabel = new QLabel(tr("No file chosen"));
+    fileLabel = new QLabel(tr("No file chosen"));
 
     QLayout *fileInputLayout = new QHBoxLayout;
     fileInputLayout->addWidget(openFileButton);
-    fileInputLayout->addWidget(filelabel);
+    fileInputLayout->addWidget(fileLabel);
     fileInputLayout->setAlignment(Qt::AlignCenter);
     QWidget *buttonWidget = new QWidget;
     buttonWidget->setLayout(fileInputLayout);
@@ -65,24 +65,24 @@ void QRFile::fileOpen()
     fileDialog.setNameFilters({{"Image files (*.png *.jpg *.gif)"}});
     if (fileDialog.exec() != QDialog::Accepted)
         return;
-    filename = fileDialog.selectedFiles().constFirst();
-    QFileInfo fi(filename);
-    QString name = fi.fileName();
-    filelabel->setText(name);
+    filePath = fileDialog.selectedFiles().constFirst();
+    QFileInfo fi(filePath);
+    QString filename = fi.fileName();
+    fileLabel->setText(filename);
 }
 
 
-int QRFile::load(const QString &filename, bool isExample)
+int QRFile::load(const QString &filePath, bool isExample)
 {
-    if (!QFile::exists(filename)) {
+    if (!QFile::exists(filePath)) {
         return 1;
     }
-    QFile file(filename);
+    QFile file(filePath);
     if (!file.open(QFile::ReadOnly)) {
         return 1;
     }
 
-    std::string std_filename = filename.toStdString();
+    std::string std_filename = filePath.toStdString();
     const char* f = std_filename.c_str();
 
     // create a reader
@@ -130,9 +130,9 @@ void QRFile::verify()
 {
     bool isExample = exampleButton->isChecked() ? 1 : 0;
 
-    if (load(filename, isExample) == 0) {
+    if (load(filePath, isExample) == 0) {
     }
     else {
-        QMessageBox::information(this, "Error", tr("Could not open \"%1\"").arg(QDir::toNativeSeparators(filename)));
+        QMessageBox::information(this, "Error", tr("Could not open \"%1\"").arg(QDir::toNativeSeparators(filePath)));
     }
 }
