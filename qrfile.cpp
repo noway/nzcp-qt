@@ -225,6 +225,8 @@ int QRFile::load(const QString &filename)
 //     zbar_processor_destroy(processor);
 
 
+    bool isExample = exampleButton->isChecked() ? 1 : 0;
+
 
     // create a reader
     ImageScanner scanner;
@@ -255,7 +257,7 @@ int QRFile::load(const QString &filename)
         if (symbol->get_type() == ZBAR_QRCODE) {
             std::string data = symbol->get_data();
 
-            verifyPassURISignal(data);
+            verifyPassURISignal(data, isExample);
 
             const char* data_c = data.c_str();
             printf("%s\n", data_c);

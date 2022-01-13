@@ -20,7 +20,7 @@ Dialog::Dialog()
     tabWidget->addTab(qrFile, tr("QR code file"));
     tabWidget->addTab(new URI(), tr("URI"));
 
-    connect(qrFile , SIGNAL(verifyPassURISignal(std::string)), this, SLOT(verifyPassURI(std::string)));
+    connect(qrFile , SIGNAL(verifyPassURISignal(std::string, bool)), this, SLOT(verifyPassURI(std::string, bool)));
 
     mainLayout->addWidget(tabWidget);
     mainLayout->addWidget(formGroupBox);
@@ -83,12 +83,12 @@ void Dialog::createFormGroupBox()
 }
 
 
-void Dialog::verifyPassURI(std::string std_uri)
+void Dialog::verifyPassURI(std::string std_uri, bool isExample)
 {
     // QString uri = smallEditor->toPlainText();
     // std::string std_uri = uri.toStdString();
 
-    int is_example = liveButton->isChecked() ? 0 : 1;
+    int is_example = isExample ? 1 : 0;
 
     nzcp_verification_result verification_result;
     nzcp_error error = nzcp_verify_pass_uri((uint8_t*)std_uri.c_str(), &verification_result, is_example);

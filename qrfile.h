@@ -24,7 +24,7 @@ public:
     explicit QRFile(QWidget *parent = nullptr);
 
 signals:
-    void verifyPassURISignal(std::string);
+    void verifyPassURISignal(std::string uri, bool isExample);
 
 private:
 
