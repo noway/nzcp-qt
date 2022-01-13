@@ -26,6 +26,7 @@ public:
 private:
 
     void fileOpen();
+    bool load(const QString &f);
     QGroupBox *gridGroupBox;
     QTextEdit *smallEditor;
     QRadioButton *liveButton;

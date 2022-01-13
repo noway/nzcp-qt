@@ -1,4 +1,5 @@
 #include <QtWidgets>
+#include <QStatusBar>
 #include "qrfile.h"
 
 QRFile::QRFile(QWidget *parent) : QWidget(parent)
@@ -54,8 +55,40 @@ void QRFile::fileOpen()
     if (fileDialog.exec() != QDialog::Accepted)
         return;
     const QString fn = fileDialog.selectedFiles().constFirst();
-    // if (load(fn))
-    //     statusBar()->showMessage(tr("Opened \"%1\"").arg(QDir::toNativeSeparators(fn)));
-    // else
-    //     statusBar()->showMessage(tr("Could not open \"%1\"").arg(QDir::toNativeSeparators(fn)));
+    if (load(fn)) {
+        // QMessageBox::information(this, "Opened", "Ok?");
+    }
+    else {
+        QMessageBox::information(this, "Error", tr("Could not open \"%1\"").arg(QDir::toNativeSeparators(fn)));
+    }
+}
+
+
+bool QRFile::load(const QString &f)
+{
+    if (!QFile::exists(f))
+        return false;
+    QFile file(f);
+    if (!file.open(QFile::ReadOnly))
+        return false;
+
+//     QByteArray data = file.readAll();
+//     QMimeDatabase db;
+//     const QString &mimeTypeName = db.mimeTypeForFileNameAndData(f, data).name();
+//     if (mimeTypeName == u"text/html") {
+//         auto encoding = QStringDecoder::encodingForHtml(data);
+//         QString str = QStringDecoder(encoding ? *encoding : QStringDecoder::Utf8)(data);
+//         QUrl fileUrl = f.startsWith(u':') ? QUrl(f) : QUrl::fromLocalFile(f);
+//         textEdit->document()->setBaseUrl(fileUrl.adjusted(QUrl::RemoveFilename));
+//         textEdit->setHtml(str);
+// #if QT_CONFIG(textmarkdownreader)
+//     } else if (mimeTypeName == u"text/markdown") {
+//         textEdit->setMarkdown(QString::fromUtf8(data));
+// #endif
+//     } else {
+//         textEdit->setPlainText(QString::fromUtf8(data));
+//     }
+
+//     setCurrentFileName(f);
+    return true;
 }
