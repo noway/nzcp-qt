@@ -30,3 +30,5 @@ Contributions welcome! 🥳
 
 ## Roadmap
 - Publish a binary for Mac OS
+- Better error handling
+- Address/Memory Leak sanitization
