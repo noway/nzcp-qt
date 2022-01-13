@@ -34,6 +34,8 @@ private:
     
     QString filename;
 
+    QLabel *filelabel;
+
     QGroupBox *gridGroupBox;
     QTextEdit *smallEditor;
     QRadioButton *liveButton;

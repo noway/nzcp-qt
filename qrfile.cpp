@@ -13,11 +13,15 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
     QVBoxLayout *layout = new QVBoxLayout;
 
     QPushButton *openFileButton = new QPushButton(tr("Choose file"));
+    openFileButton->setFixedWidth(100);
+    filelabel = new QLabel(tr("No file chosen"));
 
-    QLayout *buttonLayout = new QHBoxLayout;
-    buttonLayout->addWidget(openFileButton);
+    QLayout *fileInputLayout = new QHBoxLayout;
+    fileInputLayout->addWidget(openFileButton);
+    fileInputLayout->addWidget(filelabel);
+    fileInputLayout->setAlignment(Qt::AlignCenter);
     QWidget *buttonWidget = new QWidget;
-    buttonWidget->setLayout(buttonLayout);
+    buttonWidget->setLayout(fileInputLayout);
     buttonWidget->setMinimumSize(QSize(0, 250));
 
     connect(openFileButton, &QAbstractButton::clicked, this, &QRFile::fileOpen);
@@ -58,10 +62,13 @@ void QRFile::fileOpen()
     QFileDialog fileDialog(this, tr("Choose File..."));
     fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
     fileDialog.setFileMode(QFileDialog::ExistingFile);
-    fileDialog.setMimeTypeFilters({"image/png", "image/jpeg", "image/gif"});
+    fileDialog.setNameFilters({{"Image files (*.png *.jpg *.gif)"}});
     if (fileDialog.exec() != QDialog::Accepted)
         return;
     filename = fileDialog.selectedFiles().constFirst();
+    QFileInfo fi(filename);
+    QString name = fi.fileName();
+    filelabel->setText(name);
 }
 
 
