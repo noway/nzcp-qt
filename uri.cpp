@@ -14,18 +14,18 @@ URI::URI(QWidget *parent) : QWidget(parent)
     layout->addWidget(smallEditor);
 
     QHBoxLayout *layout2 = new QHBoxLayout;
-    QHBoxLayout *layout3 = new QHBoxLayout;
+    QHBoxLayout *modeLayout = new QHBoxLayout;
 
     liveButton = new QRadioButton(tr("Live"));
     liveButton->setChecked(true);
     exampleButton = new QRadioButton(tr("Example"));
 
-    layout3->addWidget(liveButton);
-    layout3->addWidget(exampleButton);
-    layout3->setAlignment(Qt::AlignLeft);
+    modeLayout->addWidget(liveButton);
+    modeLayout->addWidget(exampleButton);
+    modeLayout->setAlignment(Qt::AlignLeft);
 
 
-    layout2->addLayout(layout3);
+    layout2->addLayout(modeLayout);
     button = new QPushButton(tr("Verify"));
     button->setAutoDefault(false);
     button->setFixedWidth(100);
