@@ -13,6 +13,7 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
     QVBoxLayout *layout = new QVBoxLayout;
 
     QPushButton *openFileButton = new QPushButton(tr("Choose file"));
+    openFileButton->setAutoDefault(false);
     openFileButton->setFixedWidth(100);
     fileLabel = new QLabel(tr("No file chosen"));
 
