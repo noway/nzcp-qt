@@ -14,6 +14,7 @@ class QMenuBar;
 class QPushButton;
 class QTextEdit;
 class QRadioButton;
+class QTabWidget;
 QT_END_NAMESPACE
 
 class Dialog : public QDialog
@@ -28,10 +29,13 @@ private slots:
 
 private:
     void createMenu();
-    void createGridGroupBox();
+    // void createGridGroupBox();
     void createFormGroupBox();
 
     QMenuBar *menuBar;
+
+    QTabWidget *tabWidget;
+
     QGroupBox *gridGroupBox;
     QGroupBox *formGroupBox;
     QTextEdit *smallEditor;

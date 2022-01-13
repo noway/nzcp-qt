@@ -1,18 +1,25 @@
 #include <QtWidgets>
 #include "dialog.h"
 #include <nzcp.h>
+#include "uri.h"
+#include "qrfile.h"
 
 Dialog::Dialog()
 {
     createMenu();
-    createGridGroupBox();
+    // createGridGroupBox();
     createFormGroupBox();
 
     connect(button, &QPushButton::released, this, &Dialog::handleButton);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setMenuBar(menuBar);
-    mainLayout->addWidget(gridGroupBox);
+
+    tabWidget = new QTabWidget;
+    tabWidget->addTab(new URI(), tr("URI"));
+    tabWidget->addTab(new QRFile(), tr("QR code file"));
+
+    mainLayout->addWidget(tabWidget);
     mainLayout->addWidget(formGroupBox);
     setLayout(mainLayout);
 
@@ -28,41 +35,6 @@ void Dialog::createMenu()
     menuBar->addMenu(fileMenu);
 
     connect(exitAction, &QAction::triggered, this, &QDialog::accept);
-}
-
-void Dialog::createGridGroupBox()
-{
-    gridGroupBox = new QGroupBox(tr("New Zealand COVID Pass URI"));
-    QVBoxLayout *layout = new QVBoxLayout;
-
-    smallEditor = new QTextEdit;
-    smallEditor->setAcceptRichText(false);
-    smallEditor->setMinimumSize(QSize(0, 250));
-    smallEditor->setPlaceholderText(tr("NZCP:/1/..."));
-
-    layout->addWidget(smallEditor);
-
-    QHBoxLayout *layout2 = new QHBoxLayout;
-    QHBoxLayout *layout3 = new QHBoxLayout;
-
-    liveButton = new QRadioButton(tr("Live"));
-    liveButton->setChecked(true);
-    exampleButton = new QRadioButton(tr("Example"));
-
-    layout3->addWidget(liveButton);
-    layout3->addWidget(exampleButton);
-    layout3->setAlignment(Qt::AlignLeft);
-
-
-    layout2->addLayout(layout3);
-    button = new QPushButton(tr("Verify"));
-    button->setAutoDefault(false);
-    button->setFixedWidth(100);
-    layout2->addWidget(button);
-    layout->addLayout(layout2);
-
-
-    gridGroupBox->setLayout(layout);
 }
 
 void Dialog::createFormGroupBox()

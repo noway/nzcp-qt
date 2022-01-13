@@ -1,8 +1,10 @@
 QT += widgets
 requires(qtConfig(combobox))
 
-HEADERS     = dialog.h
+HEADERS     = dialog.h uri.h qrfile.h
 SOURCES     = dialog.cpp \
+              uri.cpp \
+              qrfile.cpp \
               main.cpp
 
 # install
