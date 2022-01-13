@@ -51,7 +51,7 @@ void QRFile::fileOpen()
     QFileDialog fileDialog(this, tr("Open File..."));
     fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
     fileDialog.setFileMode(QFileDialog::ExistingFile);
-    fileDialog.setMimeTypeFilters({"image/gif", "image/jpeg", "image/png"});
+    fileDialog.setMimeTypeFilters({"image/png", "image/jpeg", "image/gif"});
     if (fileDialog.exec() != QDialog::Accepted)
         return;
     const QString fn = fileDialog.selectedFiles().constFirst();
