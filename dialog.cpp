@@ -16,8 +16,8 @@ Dialog::Dialog()
     mainLayout->setMenuBar(menuBar);
 
     tabWidget = new QTabWidget;
-    tabWidget->addTab(new URI(), tr("URI"));
     tabWidget->addTab(new QRFile(), tr("QR code file"));
+    tabWidget->addTab(new URI(), tr("URI"));
 
     mainLayout->addWidget(tabWidget);
     mainLayout->addWidget(formGroupBox);
