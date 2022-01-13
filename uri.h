@@ -23,7 +23,12 @@ class URI : public QWidget
 public:
     explicit URI(QWidget *parent = nullptr);
 
+signals:
+    void verifyPassURISignal(std::string uri, bool isExample);
+
 private:
+    void verify();
+
     QGroupBox *gridGroupBox;
     QTextEdit *smallEditor;
     QRadioButton *liveButton;

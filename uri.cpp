@@ -32,8 +32,20 @@ URI::URI(QWidget *parent) : QWidget(parent)
     layout2->addWidget(button);
     layout->addLayout(layout2);
 
+    connect(button, &QAbstractButton::clicked, this, &URI::verify);
 
     gridGroupBox->setLayout(layout);
 
     setLayout(layout);
+}
+
+
+
+void URI::verify()
+{
+    bool isExample = exampleButton->isChecked() ? 1 : 0;
+    QString uri = smallEditor->toPlainText();
+    std::string stdUri = uri.toStdString();
+
+    verifyPassURISignal(stdUri, isExample);
 }

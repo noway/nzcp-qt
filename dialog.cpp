@@ -17,10 +17,12 @@ Dialog::Dialog()
 
     tabWidget = new QTabWidget;
     QRFile *qrFile = new QRFile;
+    URI *uri = new URI;
     tabWidget->addTab(qrFile, tr("QR code file"));
-    tabWidget->addTab(new URI(), tr("URI"));
+    tabWidget->addTab(uri, tr("URI"));
 
-    connect(qrFile , SIGNAL(verifyPassURISignal(std::string, bool)), this, SLOT(verifyPassURI(std::string, bool)));
+    connect(qrFile, SIGNAL(verifyPassURISignal(std::string, bool)), this, SLOT(verifyPassURI(std::string, bool)));
+    connect(uri, SIGNAL(verifyPassURISignal(std::string, bool)), this, SLOT(verifyPassURI(std::string, bool)));
 
     mainLayout->addWidget(tabWidget);
     mainLayout->addWidget(formGroupBox);
