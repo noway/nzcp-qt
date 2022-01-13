@@ -82,17 +82,14 @@ int QRFile::load(const QString &filePath, bool isExample)
         return 1;
     }
 
-    std::string std_filename = filePath.toStdString();
-    const char* f = std_filename.c_str();
+    std::string stdFilePath = filePath.toStdString();
+    const char* cFilePath = stdFilePath.c_str();
 
-    // create a reader
     ImageScanner scanner;
-
-    // configure the reader
     scanner.set_config(ZBAR_NONE, ZBAR_CFG_ENABLE, 1);
 
-    // obtain image data
-    Magick::Image magick(f); // read an image file
+    // TODO: error handling
+    Magick::Image magick(cFilePath);
 
     int width  = magick.columns(); // extract dimensions
     int height = magick.rows();
@@ -102,15 +99,12 @@ int QRFile::load(const QString &filePath, bool isExample)
     magick.write(&blob, "GRAY", 8);
     const void *raw = blob.data();
 
-    // wrap image data
     Image image(width, height, "Y800", raw, width * height);
 
-    // scan the image for barcodes
+    // TODO: error handling
     int n = scanner.scan(image);
 
-    // extract results
     for (Image::SymbolIterator symbol = image.symbol_begin(); symbol != image.symbol_end(); ++symbol) {
-        // do something useful with results
         if (symbol->get_type() == ZBAR_QRCODE) {
             std::string data = symbol->get_data();
 
