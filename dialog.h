@@ -27,12 +27,8 @@ public:
 public slots:
     void verifyPassURI(std::string uri, bool isExample);
 
-// private slots:
-//   void handleButton();
-
 private:
     void createMenu();
-    // void createGridGroupBox();
     void createFormGroupBox();
 
     QMenuBar *menuBar;

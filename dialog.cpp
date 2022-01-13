@@ -7,10 +7,7 @@
 Dialog::Dialog()
 {
     createMenu();
-    // createGridGroupBox();
     createFormGroupBox();
-
-    // connect(button, &QPushButton::released, this, &Dialog::handleButton);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setMenuBar(menuBar);
@@ -87,9 +84,6 @@ void Dialog::createFormGroupBox()
 
 void Dialog::verifyPassURI(std::string std_uri, bool isExample)
 {
-    // QString uri = smallEditor->toPlainText();
-    // std::string std_uri = uri.toStdString();
-
     int is_example = isExample ? 1 : 0;
 
     nzcp_verification_result verification_result;
@@ -119,7 +113,3 @@ void Dialog::verifyPassURI(std::string std_uri, bool isExample)
     nzcp_free_verification_result(&verification_result);
 
 }
-
-// void Dialog::slotFunc(std::string std_uri)) {
-//     printf("slotFunc\n");
-// }
