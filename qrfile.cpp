@@ -19,6 +19,12 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
 
     button = new QPushButton(tr("&Open file"));
 
+    QLayout *buttonLayout = new QHBoxLayout;
+    buttonLayout->addWidget(button);
+    QWidget *buttonWidget = new QWidget;
+    buttonWidget->setLayout(buttonLayout);
+    buttonWidget->setMinimumSize(QSize(0, 250));
+
     connect(button, &QAbstractButton::clicked, this, &QRFile::fileOpen);
 
     // smallEditor = new QTextEdit;
@@ -26,7 +32,7 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
     // smallEditor->setMinimumSize(QSize(0, 250));
     // smallEditor->setPlaceholderText(tr("NZCP:/1/..."));
 
-    layout->addWidget(button);
+    layout->addWidget(buttonWidget);
 
     QHBoxLayout *layout2 = new QHBoxLayout;
     QHBoxLayout *layout3 = new QHBoxLayout;
