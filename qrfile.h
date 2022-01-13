@@ -29,7 +29,11 @@ signals:
 private:
 
     void fileOpen();
-    int load(const QString &f);
+    int load(const QString &f, bool isExample);
+    void verify();
+    
+    QString filename;
+
     QGroupBox *gridGroupBox;
     QTextEdit *smallEditor;
     QRadioButton *liveButton;

@@ -12,7 +12,7 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
     gridGroupBox = new QGroupBox(tr("New Zealand COVID Pass URI"));
     QVBoxLayout *layout = new QVBoxLayout;
 
-    QPushButton *openFileButton = new QPushButton(tr("&Open file"));
+    QPushButton *openFileButton = new QPushButton(tr("Choose file"));
 
     QLayout *buttonLayout = new QHBoxLayout;
     buttonLayout->addWidget(openFileButton);
@@ -43,6 +43,7 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
     layout2->addWidget(button);
     layout->addLayout(layout2);
 
+    connect(button, &QAbstractButton::clicked, this, &QRFile::verify);
 
     gridGroupBox->setLayout(layout);
 
@@ -54,23 +55,17 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
 
 void QRFile::fileOpen()
 {
-    QFileDialog fileDialog(this, tr("Open File..."));
+    QFileDialog fileDialog(this, tr("Choose File..."));
     fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
     fileDialog.setFileMode(QFileDialog::ExistingFile);
     fileDialog.setMimeTypeFilters({"image/png", "image/jpeg", "image/gif"});
     if (fileDialog.exec() != QDialog::Accepted)
         return;
-    const QString fn = fileDialog.selectedFiles().constFirst();
-    if (load(fn) == 0) {
-        // QMessageBox::information(this, "Opened", "Ok?");
-    }
-    else {
-        QMessageBox::information(this, "Error", tr("Could not open \"%1\"").arg(QDir::toNativeSeparators(fn)));
-    }
+    filename = fileDialog.selectedFiles().constFirst();
 }
 
 
-int QRFile::load(const QString &filename)
+int QRFile::load(const QString &filename, bool isExample)
 {
     if (!QFile::exists(filename)) {
         return 1;
@@ -80,11 +75,8 @@ int QRFile::load(const QString &filename)
         return 1;
     }
 
-
     std::string std_filename = filename.toStdString();
     const char* f = std_filename.c_str();
-
-    bool isExample = exampleButton->isChecked() ? 1 : 0;
 
     // create a reader
     ImageScanner scanner;
@@ -125,4 +117,15 @@ int QRFile::load(const QString &filename)
     // clean up
     image.set_data(NULL, 0);
     return 0;
+}
+
+void QRFile::verify()
+{
+    bool isExample = exampleButton->isChecked() ? 1 : 0;
+
+    if (load(filename, isExample) == 0) {
+    }
+    else {
+        QMessageBox::information(this, "Error", tr("Could not open \"%1\"").arg(QDir::toNativeSeparators(filename)));
+    }
 }
