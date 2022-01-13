@@ -12,15 +12,15 @@ QRFile::QRFile(QWidget *parent) : QWidget(parent)
     gridGroupBox = new QGroupBox(tr("New Zealand COVID Pass URI"));
     QVBoxLayout *layout = new QVBoxLayout;
 
-    button = new QPushButton(tr("&Open file"));
+    QPushButton *openFileButton = new QPushButton(tr("&Open file"));
 
     QLayout *buttonLayout = new QHBoxLayout;
-    buttonLayout->addWidget(button);
+    buttonLayout->addWidget(openFileButton);
     QWidget *buttonWidget = new QWidget;
     buttonWidget->setLayout(buttonLayout);
     buttonWidget->setMinimumSize(QSize(0, 250));
 
-    connect(button, &QAbstractButton::clicked, this, &QRFile::fileOpen);
+    connect(openFileButton, &QAbstractButton::clicked, this, &QRFile::fileOpen);
 
     layout->addWidget(buttonWidget);
 
