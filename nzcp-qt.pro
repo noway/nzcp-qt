@@ -1,3 +1,4 @@
+CONFIG += link_pkgconfig
 QT += widgets
 requires(qtConfig(combobox))
 
@@ -9,6 +10,9 @@ SOURCES     = dialog.cpp \
 
 # install
 INSTALLS += target
-INCLUDEPATH += compiled-nzcp-c/usr/local/include
-LIBPATH += compiled-nzcp-c/usr/local/lib
-LIBS += -lnzcp
+INCLUDEPATH += compiled-nzcp-c/usr/local/include /opt/homebrew/include 
+LIBPATH += compiled-nzcp-c/usr/local/lib /opt/homebrew/lib
+PKGCONFIG += MagickWand
+
+
+LIBS += -lnzcp -lzbar 
