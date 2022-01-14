@@ -25,7 +25,6 @@ Contributions welcome! 🥳
 
 ## Build
 - `qmake`
-- `./build_nzcp`
 - `make`
 
 ## Run
