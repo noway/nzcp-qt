@@ -8,6 +8,10 @@ SOURCES     = dialog.cpp \
               qrfile.cpp \
               main.cpp
 
+QMAKE_EXTRA_TARGETS += compiled-nzcp-c
+PRE_TARGETDEPS += compiled-nzcp-c
+compiled-nzcp-c.commands = ./build_nzcp
+
 # install
 INSTALLS += target
 
