@@ -19,6 +19,7 @@ Contributions welcome! 🥳
 - macOS operating system
 
 ## Required packages
+- `brew install cmake`
 - `brew install qt`
 - `brew install zbar`
 - `brew install imagemagick`
