@@ -16,9 +16,12 @@ Contributions welcome! 🥳
 <img width="639" alt="Screen Shot 2022-01-14 at 1 44 02 AM" src="https://user-images.githubusercontent.com/2031472/149332622-e6690407-8e7b-47f6-b88b-15d79d0f36c0.png">
 
 ## Requirements
-- `qt@6`
-- `zbar`
-- `imagemagick@7`
+- macOS operating system
+
+## Required packages
+- `brew install qt`
+- `brew install zbar`
+- `brew install imagemagick`
 
 ## Build
 - `qmake`
@@ -30,5 +33,6 @@ Contributions welcome! 🥳
 
 ## Roadmap
 - Publish a binary for Mac OS
+- Build on Linux
 - Better error handling
 - Address/Memory Leak sanitization
