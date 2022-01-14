@@ -91,8 +91,12 @@ int QRFile::load(const QString &filePath)
 
     Image image(width, height, "Y800", raw, width * height);
 
-    // TODO: error handling
+    // TODO: better error handling
     int n = scanner.scan(image);
+    printf("result count=%d\n", n);
+    if (n == 0) {
+        return 1;
+    }
 
     for (Image::SymbolIterator symbol = image.symbol_begin(); symbol != image.symbol_end(); ++symbol) {
         if (symbol->get_type() == ZBAR_QRCODE) {
@@ -115,6 +119,6 @@ void QRFile::verify()
     if (load(filePath) == 0) {
     }
     else {
-        QMessageBox::information(this, "Error", tr("Could not open \"%1\"").arg(QDir::toNativeSeparators(filePath)));
+        QMessageBox::information(this, "Error", tr("Could not scan \"%1\"").arg(QDir::toNativeSeparators(filePath)));
     }
 }
